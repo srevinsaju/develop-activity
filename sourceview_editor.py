@@ -351,7 +351,7 @@ class GtkSourceview2Page(GtkSource.View):
         Load the text, and optionally scroll to the given offset in the file.
         '''
         self.text_buffer.begin_not_undoable_action()
-        _file = file(self.full_path)
+        _file = open(self.full_path, 'r')
         self.text_buffer.set_text(_file.read())
         _file.close()
         if offset is not None:
@@ -380,7 +380,7 @@ class GtkSourceview2Page(GtkSource.View):
             buff = self.text_buffer
             text = buff.get_text(buff.get_start_iter(), buff.get_end_iter(),
                                  False)
-            _file = file(self.full_path, 'w')
+            _file = open(self.full_path, 'w')
             try:
                 _file.write(text)
             except (IOError, OSError):
