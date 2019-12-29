@@ -232,7 +232,7 @@ class DevelopActivity(activity.Activity):
         self.treenotebook.set_current_page(page)
 
     def _explore_code(self, btn, switch_page=True):
-        from ninja import introspection
+        from ninja-ide.ninja-ide.tools import introspection
         text = self.editor.get_text()
         path = self.editor.get_file_path()
         logging.error('Analyzing %s', path)
