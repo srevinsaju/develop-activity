@@ -205,7 +205,7 @@ class GtkSourceview2Editor(Gtk.Notebook):
 
     def replace(self, ftext, rtext, s_opts):
         replaced = False
-        if s_opts.use_regex and issubclass(type(ftext), basestring):
+        if s_opts.use_regex and issubclass(type(ftext), str):
             ftext = re.compile(ftext)
         multifile = (s_opts.where == S_WHERE.multifile)
         if multifile and s_opts.replace_all:
