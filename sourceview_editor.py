@@ -25,7 +25,6 @@ from gi.repository import GtkSource
 import os.path
 import re
 import mimetypes
-from exceptions import ValueError, TypeError, IOError, OSError
 
 from sugar3 import profile
 from sugar3.graphics.icon import Icon
