@@ -86,9 +86,9 @@ class SymbolsTree(Gtk.TreeView):
 
         if 'classes' in data:
             classes = data['classes']
-            for _class in classes.keys():
-                class_dict = classes[_class][1]
-                parent = self._add_class(_class, classes[_class][0])
+            for _class in classes.keys():                
+                class_dict = classes[_class]
+                parent = self._add_class(_class, classes[_class]['lineno'])
                 for key in class_dict.keys():
                     if key == 'attributes':
                         attributes_dict = class_dict[key]
