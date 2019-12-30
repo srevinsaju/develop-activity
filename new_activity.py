@@ -30,7 +30,7 @@ def activity_info_template(name, web_activity=False):
     if web_activity:
         exec_line = 'sugar-activity-web'
     else:
-        exec_line = 'sugar-activity activity.HelloWorldActivity'
+        exec_line = 'sugar-activity3 activity.HelloWorldActivity'
 
     return """[Activity]
 name = %s
