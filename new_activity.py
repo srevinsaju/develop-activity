@@ -55,6 +55,7 @@ def create_activity(name, base_path, skeleton):
             os.makedirs(path)
             break
         except FileExistsError:
+            logging.warning('{} activity folder already exists. Trying to create:{}'.format(path, name.replace(' ', '')+str(revision+1)))
             revision += 1
     activity_path = os.path.join(path, 'activity')
     os.mkdir(activity_path)
