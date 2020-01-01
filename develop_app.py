@@ -443,8 +443,10 @@ class DevelopActivity(activity.Activity):
             f.close()
         jobject.file_path = file_path
         datastore.write(jobject)
-        jobject.destroy()
-        return jobject
+        try:
+            return jobject
+        finally:
+            jobject.destroy()
 
     def write_file(self, file_path):
         """Wrap up the activity as a bundle and save it to journal.
