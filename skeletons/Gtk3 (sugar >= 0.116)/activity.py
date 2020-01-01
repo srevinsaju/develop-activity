@@ -16,8 +16,9 @@
 
 """HelloWorld Activity: A case study for developing an activity."""
 
+import gi
+gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
-import logging
 
 from gettext import gettext as _
 
@@ -29,6 +30,7 @@ from sugar3.activity.widgets import StopButton
 from sugar3.activity.widgets import ShareButton
 from sugar3.activity.widgets import DescriptionItem
 
+
 class HelloWorldActivity(activity.Activity):
     """HelloWorldActivity class as specified in activity.info"""
 
@@ -36,9 +38,11 @@ class HelloWorldActivity(activity.Activity):
         """Set up the HelloWorld activity."""
         activity.Activity.__init__(self, handle)
 
-        # Change the following number to change max participants
+        # we do not have collaboration features
+        # make the share option insensitive
         self.max_participants = 1
 
+        # toolbar with the new toolbar redesign
         toolbar_box = ToolbarBox()
 
         activity_button = ActivityButton(self)
@@ -56,7 +60,7 @@ class HelloWorldActivity(activity.Activity):
         share_button = ShareButton(self)
         toolbar_box.toolbar.insert(share_button, -1)
         share_button.show()
-        
+
         separator = Gtk.SeparatorToolItem()
         separator.props.draw = False
         separator.set_expand(True)
@@ -70,7 +74,7 @@ class HelloWorldActivity(activity.Activity):
         self.set_toolbar_box(toolbar_box)
         toolbar_box.show()
 
-        # Change the following text to change the message (Default: 'Hello World!'
+        # label with the text, make the string translatable
         label = Gtk.Label(_("Hello World!"))
         self.set_canvas(label)
         label.show()
