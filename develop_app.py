@@ -401,15 +401,18 @@ class DevelopActivity(activity.Activity):
         for k, v in metadata.items():
             jobject.metadata[k] = v
         jobject.file_path = builder.package_path
-        datastore.write(jobject)
-        jobject.destroy()
+        try:
+            datastore.write(jobject)
+        finally:
+            jobject.destroy()
+            del jobject
         self._show_alert(_('The bundle has been saved in the journal.'),
                          _('Success'))
 
     def save_source_jobject(self, activity_dir, file_path, filenames=None):
         if not activity_dir:
             raise NotImplementedError
-
+        
         # fix up datastore object
         # FIXME: some of this is overkill,
         # legacy from when I created a new jobject each save
@@ -443,10 +446,7 @@ class DevelopActivity(activity.Activity):
             f.close()
         jobject.file_path = file_path
         datastore.write(jobject)
-        try:
-            return jobject
-        finally:
-            jobject.destroy()
+        return jobject
 
     def write_file(self, file_path):
         """Wrap up the activity as a bundle and save it to journal.
